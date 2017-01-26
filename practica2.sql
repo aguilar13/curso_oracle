@@ -1,0 +1,45 @@
+set serveroutput on;
+--recapitulando lo que es un bloque PL SQL
+DECLARE
+nombre varchar2(20):='Mauricio';
+BEGIN
+DBMS_output.put_line('Buenas noches'||nombre);
+END;
+/
+
+DECLARE
+EDAD Integer:=23;
+DIAS Integer;
+ESTATUS VARCHAR2(12);
+BEGIN
+DIAS:=EDAD*365;
+IF DIAS >10000 THEN
+ESTATUS:='VIEJO';
+ELSE
+ESTATUS:='JOVEN';
+END IF;
+DBMS_output.put_line('Tu edad en dias es'||DIAS||'ESTATUS:'||ESTATUS);
+End;
+/
+
+
+
+--VEREMOS NUESTRO PRIMER PROCEDIMIENTO ALMACENADO
+CREATE OR REPLACE PROCEDURE saludar (mensaje IN VARCHAR2)
+AS
+BEGIN
+DBMS_OUTPUT.PUT_LINE('HOLA BUENAS NOCHES'||mensaje);
+END;
+/
+--EJECUTAMOS EL PROCEDIMIENTO
+exec saludar('Mauricio Aguilar');
+--Generamos la secuencia
+
+CREATE SEQUENCE SEC_PERSONA
+START WITH 1
+INCREMENT BY 1
+NOMAXVALUE;
+--Generamos la tabla
+
+CREATE TABLE PERSONA(ID_PERSONA INTEGER, NOMBRE VARCHAR2(20),EDAD INTEGER
+CONSTRAINT PK_ID_PERSONA PRIMARY KEY (ID_PERSONA));
